@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'; 
 import List from 'material-ui/List';
 import Todo from './Todo';
 
-class TodoList extends Component {
+class TodoList extends PureComponent {
   static propTypes = { 
       handleRemove: PropTypes.func,
       handleCheck: PropTypes.func,
