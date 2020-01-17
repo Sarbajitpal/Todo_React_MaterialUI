@@ -32,23 +32,27 @@ class AddTodo extends PureComponent {
       <MuiThemeProvider>
         <div>
           <form id="myForm">
-            <Paper style={{ width: "90%", leftMargin: "15px" }} zDepth={1}>
-              <div style={{ marginLeft: "10px" }}>
+            <Paper style={{ width: "95%", leftMargin: "15px" }} zDepth={1}>
+              <div style={{ marginLeft: "10px",marginRight:"10px" }}>
                 <TextField
+                  style={{ width:"85%" }}
                   hintText="Add ToDo"
                   className="AddText"
-                  fullWidth={true}
                   onChange={e => this.setState({ inputValue: e.target.value })}
                 />
-              </div>
-            </Paper>
-            <br />
-            <RaisedButton
+             <RaisedButton
+              style={{ float:"right",marginTop:"7px" }}
               type="submit"
               label="Add todo"
               primary={true}
               onClick={this.onClick}
             />
+            </div>
+
+            </Paper>
+
+            <br />
+            
           </form>
         </div>
       </MuiThemeProvider>

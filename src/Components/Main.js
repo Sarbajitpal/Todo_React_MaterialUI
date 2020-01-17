@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Paper from "material-ui/Paper";
+import Spinner from "react-spinkit";
 import uuid from "uuid";
 import { grey700 } from "material-ui/styles/colors";
 
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
 
+
 class Main extends Component {
   state = {
     todos: [],
-    open: false
+    open: false,
+    loaded:false
   };
 
   handleClick = todo => {
@@ -51,7 +54,7 @@ class Main extends Component {
   async componentDidMount() {
     const response = await fetch("https://jsonplaceholder.typicode.com/todos");
     const data = await response.json();
-    this.setState({ todos: data });
+    this.setState({ todos: data ,loaded:true});
   }
 
   render() {
@@ -80,11 +83,15 @@ class Main extends Component {
             <AddTodo handleClick={this.handleClick} />
           </div>
 
-          <TodoList
+          {this.state.loaded ? 
+            <TodoList
             todos={this.state.todos}
             handleRemove={this.handleRemove}
             handleCheck={this.handleCheck}
-          />
+          />:
+          <div style={{ textAlign: "center" }}>
+            <Spinner name="line-scale-pulse-out-rapid" color="blue" />
+          </div>}
 
           <br />
         </Paper>
